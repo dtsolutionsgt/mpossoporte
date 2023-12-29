@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#BA5536</color>
+    <color name="colorPrimaryDark">#BA5536</color>
+    <color name="colorAccent">#BA5536</color>lor>
+    <color name="purple_200">#FFBA5536</color>
+    <color name="purple_500">#FFBA5536</color>
+    <color name="purple_700">#FFBA5536</color>
+    <color name="teal_200">#FFBA5536</color>
+    <color name="teal_700">#FFBA5536</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="dialogback">#FBF1EF</color>
+</resources>
