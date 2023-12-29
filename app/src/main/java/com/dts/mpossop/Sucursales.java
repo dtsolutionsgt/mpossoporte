@@ -159,7 +159,6 @@ public class Sucursales extends PBase {
 
             adapter =new LA_sucursal(this,this,items);
             listview.setAdapter(adapter);
-
         } catch (Exception e) {
             msgbox(new Object(){}.getClass().getEnclosingMethod().getName()+" . "+e.getMessage());
         }
