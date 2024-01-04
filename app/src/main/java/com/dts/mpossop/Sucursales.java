@@ -7,6 +7,8 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+
 import com.dts.base.clsClasses;
 import com.dts.ladapter.LA_sucursal;
 import com.dts.webservice.wsOpenDT;
@@ -18,6 +20,8 @@ public class Sucursales extends PBase {
     private ListView listview;
     private ProgressBar progressBar;
     private EditText txtf;
+    private TextView lbl1;
+
 
     private wsOpenDT wso;
     private Runnable rnListaParam;
@@ -41,6 +45,7 @@ public class Sucursales extends PBase {
             listview = findViewById(R.id.listview1);
             progressBar = findViewById(R.id.progressBar);progressBar.setVisibility(View.VISIBLE);
             txtf = findViewById(R.id.editTextText4);
+            lbl1 = findViewById(R.id.textView9);
 
             setHandlers();
 
@@ -72,6 +77,7 @@ public class Sucursales extends PBase {
     }
 
     public void setHandlers() {
+
         try {
 
             listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -79,16 +85,18 @@ public class Sucursales extends PBase {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Object lvObj = listview.getItemAtPosition(position);
                     item = (clsClasses.clsSucursal)lvObj;
+                    String sven;
 
                     adapter.setSelectedIndex(position);
 
+                    if (item.fecha>0) sven=du.sfecha(item.fecha);else sven="-";
                     s=item.empresa+"\n\n"+
                       item.descripcion+"\n\n"+
                       item.nombre+"\n\n"+
                       item.direccion+"\n\n"+
                       item.nit+"\n\n"+
-                      item.texto;
-
+                      item.texto+"\n\n" +
+                      "Vence: "+sven;
                     msgbox(s);
                 };
             });
@@ -111,7 +119,8 @@ public class Sucursales extends PBase {
             listview.setAdapter(adapter);
 
             sql="SELECT P_SUCURSAL.CODIGO_SUCURSAL, P_EMPRESA.NOMBRE, P_SUCURSAL.DESCRIPCION, " +
-                "P_SUCURSAL.NOMBRE AS Expr1, P_SUCURSAL.DIRECCION, P_SUCURSAL.NIT, P_SUCURSAL.TEXTO " +
+                "P_SUCURSAL.NOMBRE AS Expr1, P_SUCURSAL.DIRECCION, P_SUCURSAL.NIT, " +
+                "P_SUCURSAL.TEXTO, dbo.AndrDate(P_SUCURSAL.FEL_FECHA_VENCE_CONTRATO) " +
                 "FROM  P_SUCURSAL INNER JOIN P_EMPRESA ON P_SUCURSAL.EMPRESA = P_EMPRESA.EMPRESA ";
             if (!flt.isEmpty()) {
                 sql+="WHERE  (P_EMPRESA.NOMBRE LIKE '%"+flt+"%') " +
@@ -132,6 +141,8 @@ public class Sucursales extends PBase {
     }
 
     private void listaParam() {
+        int regs=0;
+
         try {
             if (wso.errflag) throw new Exception(wso.error);
 
@@ -140,7 +151,8 @@ public class Sucursales extends PBase {
             items.clear();
 
             if (dt.getCount()>0) {
-                dt.moveToFirst();
+                dt.moveToFirst();regs=dt.getCount();
+
                 while (!dt.isAfterLast()) {
                     item=clsCls.new clsSucursal();
 
@@ -151,6 +163,12 @@ public class Sucursales extends PBase {
                     item.direccion=dt.getString(4);
                     item.nit=dt.getString(5);
                     item.texto=dt.getString(6);
+
+                    try {
+                        item.fecha=dt.getLong(7);
+                    } catch (Exception e) {
+                        item.fecha=0;
+                    }
 
                     items.add(item);
                     dt.moveToNext();
@@ -165,6 +183,7 @@ public class Sucursales extends PBase {
 
         idle=true;
         progressBar.setVisibility(View.INVISIBLE);
+        lbl1.setText("Registros: "+regs);
     }
 
     //endregion

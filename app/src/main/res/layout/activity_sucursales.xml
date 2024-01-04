@@ -62,6 +62,15 @@
                 android:padding="5dp"
                 android:src="@drawable/icon_back" />
 
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="5dp"
+                android:gravity="center_vertical"
+                android:text="Registros:" />
+
         </RelativeLayout>
 
         <RelativeLayout

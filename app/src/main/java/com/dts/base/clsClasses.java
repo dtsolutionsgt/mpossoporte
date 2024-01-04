@@ -36,6 +36,7 @@ public class clsClasses {
         public String direccion;
         public String nit;
         public String texto;
+        public long fecha;
     }
 
     //endregion
