@@ -111,8 +111,10 @@ public class ParamList extends PBase {
 
             sql="SELECT ID_PARAMEXT,VALOR_PREDET,DESCRIPCION,NOTA FROM P_PARAMEXT_VAL " +
                 "WHERE (ID_PARAMEXT>100) " +
-                "AND (NOT (ID_PARAMEXT IN (103,106,107))) ";
-            if (!flt.isEmpty()) sql+="AND (DESCRIPCION LIKE '%"+flt+"%') ";
+                "AND (NOT (ID_PARAMEXT IN (103,106,107,109,112,130,154))) ";
+            if (!flt.isEmpty()) {
+                sql+="AND ((DESCRIPCION LIKE '%"+flt+"%') OR (NOTA LIKE '%"+flt+"%')) ";
+            }
             sql+="ORDER BY DESCRIPCION";
 
             wso.execute(sql,rnListaParam);
