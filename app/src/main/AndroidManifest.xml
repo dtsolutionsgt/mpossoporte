@@ -19,7 +19,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".Sucursales"
+            android:name=".VersionEmpresa"
             android:exported="false" />
 
         <provider
@@ -66,6 +66,18 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".ParamNuevo"
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".VersionCantidad"
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".VersionGenera"
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".Sucursales"
             android:exported="false"
             android:windowSoftInputMode="stateAlwaysHidden" />
     </application>

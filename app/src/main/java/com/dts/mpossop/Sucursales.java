@@ -22,7 +22,6 @@ public class Sucursales extends PBase {
     private EditText txtf;
     private TextView lbl1;
 
-
     private wsOpenDT wso;
     private Runnable rnListaParam;
 
@@ -120,7 +119,7 @@ public class Sucursales extends PBase {
 
             sql="SELECT P_SUCURSAL.CODIGO_SUCURSAL, P_EMPRESA.NOMBRE, P_SUCURSAL.DESCRIPCION, " +
                 "P_SUCURSAL.NOMBRE AS Expr1, P_SUCURSAL.DIRECCION, P_SUCURSAL.NIT, " +
-                "P_SUCURSAL.TEXTO, dbo.AndrDate(P_SUCURSAL.FEL_FECHA_VENCE_CONTRATO) " +
+                "P_SUCURSAL.TEXTO, dbo.AndrDate(P_SUCURSAL.FEL_FECHA_VENCE_CONTRATO), P_SUCURSAL.EMPRESA " +
                 "FROM  P_SUCURSAL INNER JOIN P_EMPRESA ON P_SUCURSAL.EMPRESA = P_EMPRESA.EMPRESA ";
             if (!flt.isEmpty()) {
                 sql+="WHERE  (P_EMPRESA.NOMBRE LIKE '%"+flt+"%') " +
@@ -157,7 +156,7 @@ public class Sucursales extends PBase {
                     item=clsCls.new clsSucursal();
 
                     item.id=dt.getInt(0);
-                    item.empresa=dt.getString(1);
+                    item.empresa="("+dt.getInt(8)+") "+dt.getString(1);
                     item.descripcion=dt.getString(2);
                     item.nombre=dt.getString(3);
                     item.direccion=dt.getString(4);

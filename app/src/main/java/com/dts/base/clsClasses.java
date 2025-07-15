@@ -2,6 +2,16 @@ package com.dts.base;
 
 public class clsClasses {
 
+    public class clsfbVersion {
+        public String actver;
+        public int  eid;
+        public String enombre;
+        public int  rid;
+        public String rnombre;
+        public int  sid;
+        public String snombre;
+    }
+
     public class clsMenu {
         public int  id;
         public String nombre;

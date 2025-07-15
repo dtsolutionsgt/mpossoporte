@@ -114,6 +114,8 @@ public class wsOpenDT extends wsBase {
             int rc=cursor.getCount();
 
             openDTCursor=cursor;
+            if (rc>0) openDTCursor.moveToFirst();
+
         } catch (Exception e) {
             errflag=true;
             error=e.getMessage();
