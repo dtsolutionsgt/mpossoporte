@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.view.Gravity;
 import android.widget.Toast;
 
+import com.dts.classes.clsPosicionObj;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -53,6 +55,33 @@ public class AppMethods {
     public void getURL() {
         gl.wsurl = "http://52.41.114.122/MPosWS_QA/Mposws.asmx";
     }
+
+    public void savePos(int idpos,int idvalue) {
+        clsPosicionObj PosicionObj=new clsPosicionObj(cont,Con,db);
+        clsClasses.clsPosicion cpos=null;
+
+        try {
+
+            cpos = clsCls.new clsPosicion();
+            cpos.id=idpos;
+            cpos.posicion=idvalue;
+            PosicionObj.add(cpos);
+        } catch (Exception e) {
+            PosicionObj.update(cpos);
+        }
+    }
+
+    public int loadPos(int idpos) {
+        try {
+            clsPosicionObj PosicionObj=new clsPosicionObj(cont,Con,db);
+
+            PosicionObj.fill("WHERE (id="+idpos+")");
+            return PosicionObj.first().posicion;
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
 
     //endregion
 

@@ -30,6 +30,12 @@ public class BaseDatosScript {
 
 		try {
 
+			sql="CREATE TABLE [Posicion] ("+
+					"id INTEGER NOT NULL,"+
+					"posicion TEXT NOT NULL,"+
+					"PRIMARY KEY ([id])"+
+					");";
+			db.execSQL(sql);
 
 			return 1;
 

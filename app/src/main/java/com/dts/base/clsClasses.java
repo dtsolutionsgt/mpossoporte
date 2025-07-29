@@ -22,6 +22,11 @@ public class clsClasses {
         public String nombre;
     }
 
+    public class clsPosicion {
+        public int  id;
+        public int  posicion;
+    }
+
     public class clsP_paramext {
         public int  codigo_paramext;
         public int  empresa;

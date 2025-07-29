@@ -12,17 +12,6 @@
         android:layout_height="56dp"
         android:background="@drawable/strip">
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="0dp"
-            android:clickable="true"
-            android:onClick="doDeveloper"
-            android:padding="5dp"
-            android:src="@drawable/developer" />
-
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -47,6 +36,8 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="false"
             android:layout_marginStart="10dp"
+            android:clickable="true"
+            android:onClick="doDeveloper"
             android:src="@drawable/mposblanco" />
     </RelativeLayout>
 
@@ -73,7 +64,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
             android:gravity="center_vertical"
-            android:text="Ver 1.0"
+            android:text="Ver 1.1"
             android:textColor="#202020" />
     </RelativeLayout>
 

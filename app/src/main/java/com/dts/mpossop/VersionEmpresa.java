@@ -182,7 +182,6 @@ public class VersionEmpresa extends PBase {
             listdlg.buildDialog(VersionEmpresa.this,"Versiones");
             listdlg.setWidth(5000);
 
-
             for (clsClasses.clsMenu itm : emps) {
                 listdlg.add(itm.nombre+"  ("+itm.id+")");
             }

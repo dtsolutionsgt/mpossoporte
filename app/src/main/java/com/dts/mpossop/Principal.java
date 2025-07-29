@@ -27,7 +27,7 @@ public class Principal extends PBase {
 
     private ArrayList<clsClasses.clsMenu> cats= new ArrayList<clsClasses.clsMenu>();
 
-    private int cjCaja,cjSuc,cjEmp;
+    private int cjCaja,cjSuc,cjEmp,modo;
     private String cnCaja,cnSuc,cnEmp;
 
     @Override
@@ -42,9 +42,12 @@ public class Principal extends PBase {
 
             setHandlers();
 
-           app.getURL();
+            app.getURL();
             wso=new wsOpenDT(gl.wsurl);
-            //rnListaParam = () -> listaParam();
+
+            scriptTables();
+
+            modo=app.loadPos(1);
 
             listItems();
 
@@ -56,7 +59,7 @@ public class Principal extends PBase {
     //region Events
 
     public void doDeveloper(View view) {
-        inputValor();
+        inputPass();
         //startActivity(new Intent(Principal.this,ParamNuevo.class));
     }
 
@@ -86,10 +89,14 @@ public class Principal extends PBase {
                             startActivity(new Intent(Principal.this,Sucursales.class));break;
                         case 4:
                             gl.menuid=4;
-                            cjInput();
+                            cjInput();break;
                         case 5:
                             gl.menuid=5;
-                            showVersMenu();
+                            showVersMenu();break;
+                        case 6:
+                            gl.menuid=6;
+                            startActivity(new Intent(Principal.this,EmpresaLista.class));break;
+
                     }
 
                     callback=gl.menuid+1;
@@ -108,12 +115,14 @@ public class Principal extends PBase {
         try {
             cats.clear();
 
-            addMenuCat(0,"Parámetros por empresa");
+            addMenuCat(6,"Empresas");
             addMenuCat(1,"Lista de parámetros ");
             addMenuCat(2,"Usuarios MCP");
             addMenuCat(3,"Sucursales");
-            addMenuCat(4,"Caja");
-            addMenuCat(5,"Version");
+            if (modo==1) addMenuCat(4,"Caja");
+            if (modo==1) addMenuCat(0,"Parámetros por empresa");
+            if (modo==1) addMenuCat(5,"Version");
+            if (modo==1) addMenuCat(7,"Envio BD");
 
             adapter =new LA_Menu(this,this,cats);
             menuview.setAdapter(adapter);
@@ -230,6 +239,23 @@ public class Principal extends PBase {
         cats.add(item);
     }
 
+    private void scriptTables() {
+
+        try {
+            sql="CREATE TABLE [Posicion] ("+
+                    "id INTEGER NOT NULL,"+
+                    "posicion TEXT NOT NULL,"+
+                    "PRIMARY KEY ([id])"+
+                    ");";
+            db.execSQL(sql);
+        } catch (Exception e) { }
+
+        try {
+
+        } catch (Exception e) { }
+
+    }
+
     //endregion
 
     //region Dialogs
@@ -299,7 +325,7 @@ public class Principal extends PBase {
 
     }
 
-    private void inputValor() {
+    private void inputPass() {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
         alert.setTitle("Contraseña desarrollo");
@@ -314,7 +340,7 @@ public class Principal extends PBase {
             public void onClick(DialogInterface dialog, int whichButton) {
                 try {
                     String s=input.getText().toString();
-                    if (s.equalsIgnoreCase("ADMIN")) startActivity(new Intent(Principal.this,ParamNuevo.class));
+                    if (s.equalsIgnoreCase("ADMIN")) inputValue();
                  } catch (Exception e) {
                     mu.msgbox("Valor incorrecto");return;
                 }
@@ -327,6 +353,44 @@ public class Principal extends PBase {
 
         alert.show();
     }
+
+
+    private void inputValue() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this,R.style.DialogTheme);
+
+        alert.setTitle("Valor");
+
+        final EditText input = new EditText(this);
+        alert.setView(input);
+
+        input.setInputType(InputType.TYPE_CLASS_NUMBER );
+        input.setText("");
+        input.requestFocus();
+
+        alert.setPositiveButton("Aplicar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                try {
+                    String s=input.getText().toString();
+                    int val=Integer.parseInt(s);
+                    if (val!=1) val=0;
+                    app.savePos(1,val);
+                } catch (Exception e) {
+                    mu.msgbox("Valor incorrecto");return;
+                }
+            }
+        });
+
+        alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {}
+        });
+
+        AlertDialog dialog = alert.create();
+        dialog.show();
+
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+    }
+
 
     //endregion
 
@@ -344,7 +408,6 @@ public class Principal extends PBase {
                 procesaParametros();
                 return;
             }
-
 
         } catch (Exception e) { }
     }
