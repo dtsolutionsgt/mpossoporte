@@ -44,6 +44,10 @@ public class fbBase {
 
     }
 
+    public void removeValue(String key) {
+        fdb.getReference(root+"/"+key).removeValue();
+    }
+
     public String key() {
         return fdt.push().getKey();
     }

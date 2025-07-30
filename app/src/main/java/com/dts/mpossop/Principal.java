@@ -96,6 +96,9 @@ public class Principal extends PBase {
                         case 6:
                             gl.menuid=6;
                             startActivity(new Intent(Principal.this,EmpresaLista.class));break;
+                        case 7:
+                            gl.menuid=7;
+                            startActivity(new Intent(Principal.this,EnvioDB.class));break;
 
                     }
 
@@ -354,7 +357,6 @@ public class Principal extends PBase {
         alert.show();
     }
 
-
     private void inputValue() {
         AlertDialog.Builder alert = new AlertDialog.Builder(this,R.style.DialogTheme);
 
@@ -390,7 +392,6 @@ public class Principal extends PBase {
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
         dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
     }
-
 
     //endregion
 
