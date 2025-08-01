@@ -204,6 +204,28 @@ public class DateUtils {
 		return s;
 	}
 
+	public String univfechash(long f) {
+		long vy,vm,vd,m,h;
+		String s;
+
+		//yyyyMMdd
+
+		f=f+0;
+
+		vy=(long) f/100000000;
+		f=f % 100000000;
+		vm=(long) f/1000000;
+		f=f % 1000000;
+		vd=(long) f/10000;f=f % 10000;
+
+		s="20";
+		if (vy>9) s=s+vy; else s=s+"0"+vy;
+		if (vm>9) s=s+vm; else s=s+"0"+vm;
+		if (vd>9) s=s+vd; else s=s+"0"+vd;
+
+		return s;
+	}
+
 	public String univfechaext(int f) {
 		int vy,vm,vd;
 		String s;
@@ -291,25 +313,25 @@ public class DateUtils {
 	}
 
     public int gethour(long f) {
-        int vy,vm,vd,vh;
+		long vy,vm,vd,vh;
 
-        vy=(int) f/100000000;f=f % 100000000;
-        vm=(int) f/1000000;f=f % 1000000;
-        vd=(int) f/10000;f=f % 10000;
-        vh=(int) f/100;
+        vy=(long) f/100000000;f=f % 100000000;
+        vm=(long) f/1000000;f=f % 1000000;
+        vd=(long) f/10000;f=f % 10000;
+        vh=(long) f/100;
 
-        return vh;
+        return (int) vh;
     }
 
     public int getmin(long f) {
-        int vy,vm,vd,vh,vmi;
+		long vy,vm,vd,vh,vmi;
 
-        vy=(int) f/100000000;f=f % 100000000;
-        vm=(int) f/1000000;f=f % 1000000;
-        vd=(int) f/10000;f=f % 10000;
-        vh=(int) f/100;vmi=(int) f % 100;
+        vy=(long) f/100000000;f=f % 100000000;
+        vm=(long) f/1000000;f=f % 1000000;
+        vd=(long) f/10000;f=f % 10000;
+        vh=(long) f/100;vmi=(int) f % 100;
 
-        return vmi;
+        return (int) vmi;
     }
 
     public int getmindif(long f1,long f2) {

@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".EnvioDB">
+        tools:context=".CierreDia">
 
         <RelativeLayout
             android:id="@+id/reltop"
@@ -22,7 +22,7 @@
                 android:layout_toEndOf="@+id/imageView"
                 android:gravity="center_vertical"
                 android:paddingStart="10dp"
-                android:text="Envio Base datos"
+                android:text="Cierre de caja"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 android:textStyle="bold" />

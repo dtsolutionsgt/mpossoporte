@@ -69,6 +69,8 @@ public class Principal extends PBase {
             menuview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
                     Object lvObj = menuview.getItemAtPosition(position);
                     clsClasses.clsMenu item = (clsClasses.clsMenu)lvObj;
 
@@ -99,13 +101,19 @@ public class Principal extends PBase {
                         case 7:
                             gl.menuid=7;
                             startActivity(new Intent(Principal.this,EnvioDB.class));break;
-
+                        case 8:
+                            gl.menuid=8;
+                            startActivity(new Intent(Principal.this,CierreDia.class));break;
                     }
 
                     callback=gl.menuid+1;
                 };
             });
         } catch (Exception e) {
+
+            String se=e.getMessage();
+            se=se+"";
+
             msgbox(new Object(){}.getClass().getEnclosingMethod().getName()+" . "+e.getMessage());
         }
     }
@@ -126,6 +134,7 @@ public class Principal extends PBase {
             if (modo==1) addMenuCat(0,"Parámetros por empresa");
             if (modo==1) addMenuCat(5,"Version");
             if (modo==1) addMenuCat(7,"Envio BD");
+            addMenuCat(8,"Cierre de caja");
 
             adapter =new LA_Menu(this,this,cats);
             menuview.setAdapter(adapter);

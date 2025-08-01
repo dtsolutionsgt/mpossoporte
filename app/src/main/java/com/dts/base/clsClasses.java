@@ -12,6 +12,24 @@ public class clsClasses {
         public String snombre;
     }
 
+    public class clsCierre {
+        public int  rid;
+        public String nombre;
+        public String enombre;
+        public String rnombre;
+        public String snombre;
+        public long   fecha;
+        public int estado;
+        public int bandera;
+        public int  eid;
+        public int  sid;
+    }
+
+    public class clsCierreRuta {
+        public int  rid;
+        public long fecha;
+    }
+
     public class clsMenu {
         public int  id;
         public String nombre;

@@ -75,7 +75,6 @@ public class EnvioDB extends PBase {
         } catch (Exception e) {
             msgbox(new Object(){}.getClass().getEnclosingMethod().getName()+" . "+e.getMessage());
         }
-
     }
 
     //endregion
@@ -153,7 +152,9 @@ public class EnvioDB extends PBase {
             gl.dialogr = () -> {dialogswitch();};
 
 
-        } catch (Exception e) { }
+        } catch (Exception e) {
+            String se =e.getMessage();
+        }
     }
 
     @Override

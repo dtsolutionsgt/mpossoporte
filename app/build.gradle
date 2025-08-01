@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace 'com.dts.mpossop'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.dts.mpossop"
@@ -38,7 +38,8 @@ dependencies {
     //implementation 'androidx.activity:activity:1.10.1'
     testImplementation 'junit:junit:4.13.2'
 
-    implementation platform('com.google.firebase:firebase-bom:30.4.1')
+    implementation(platform("com.google.firebase:firebase-bom:34.0.0"))
+    //implementation platform('com.google.firebase:firebase-bom:30.4.1')
     implementation 'com.google.firebase:firebase-database'
     implementation 'com.google.firebase:firebase-core:21.1.1'
 
