@@ -29,8 +29,8 @@
             android:gravity="left"
             android:text="Material"
             android:textColor="#202020"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="16sp"
+            android:textStyle="normal" />
 
         <TextView
             android:id="@+id/lblV3"
@@ -46,8 +46,8 @@
             android:gravity="center_vertical"
             android:text="Material"
             android:textColor="#202020"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="16sp"
+            android:textStyle="normal" />
 
         <TextView
             android:id="@+id/lblV2"
@@ -65,8 +65,8 @@
             android:paddingBottom="3dp"
             android:text="Material"
             android:textColor="#202020"
-            android:textSize="18sp"
-            android:textStyle="normal" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/imageView3"

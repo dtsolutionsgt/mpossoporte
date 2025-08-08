@@ -81,7 +81,7 @@ public class LA_Cierre extends BaseAdapter {
 
         holder.lbl1.setText(items.get(position).enombre+"/"+items.get(position).snombre);
         holder.lbl2.setText(items.get(position).rnombre);
-        holder.lbl3.setText(""+du.sfecha(items.get(position).fecha));
+        holder.lbl3.setText(""+du.sfechash(items.get(position).fecha)+" "+du.shora(items.get(position).fecha));
 
         if (items.get(position).bandera==1) {
             holder.img1.setVisibility(View.VISIBLE);
