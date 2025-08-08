@@ -6,81 +6,129 @@
         android:layout_height="match_parent"
         tools:context=".CierreDia">
 
-        <RelativeLayout
-            android:id="@+id/reltop"
+    <RelativeLayout
+        android:id="@+id/reltop"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/strip">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="false"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="0dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:paddingStart="10dp"
+            android:text="Cierre de caja"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="false"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/mposblanco" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relbot"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/strip">
+
+        <TextView
+            android:id="@+id/textView15"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="@drawable/strip">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentBottom="false"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="0dp"
-                android:layout_toEndOf="@+id/imageView"
-                android:gravity="center_vertical"
-                android:paddingStart="10dp"
-                android:text="Cierre de caja"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="false"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/mposblanco" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/relbot"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="0dp"
-            android:background="@drawable/frame_rect">
+            android:gravity="center_horizontal"
+            android:text="Completo:"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:adjustViewBounds="true"
-                android:clickable="true"
-                android:onClick="doExit"
-                android:padding="5dp"
-                android:src="@drawable/icon_back" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rellist"
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_above="@+id/relbot"
-            android:layout_below="@+id/reltop"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp">
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:onClick="doExit"
+            android:padding="5dp"
+            android:src="@drawable/arr_back" />
 
-            <ListView
-                android:id="@+id/listview1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="3dp" >
-
-            </ListView>
-
-            <ProgressBar
-                android:id="@+id/progressBar3"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true" />
-        </RelativeLayout>
-
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:gravity="center_horizontal"
+            android:text="Pendientes:"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rellist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/relbot"
+        android:layout_below="@id/relcheck"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="0dp">
+
+        <ListView
+            android:id="@+id/listview1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp">
+
+        </ListView>
+
+        <ProgressBar
+            android:id="@+id/progressBar3"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relcheck"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/reltop"
+        android:background="@drawable/strip">
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/strip"
+            android:paddingStart="10dp"
+            android:text="Mostrar completos"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+
+</RelativeLayout>
