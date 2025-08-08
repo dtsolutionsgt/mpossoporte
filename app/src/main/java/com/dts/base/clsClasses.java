@@ -2,6 +2,13 @@ package com.dts.base;
 
 public class clsClasses {
 
+    public class clsfbPrecio {
+        public int codigo;
+        public int nivel;
+        public String um;
+        public double precio;
+    }
+
     public class clsfbVersion {
         public String actver;
         public int  eid;

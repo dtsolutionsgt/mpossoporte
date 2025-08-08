@@ -3,8 +3,10 @@ package com.dts.mpossop;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.dts.base.clsClasses;
 import com.dts.ladapter.LA_Cierre;
@@ -19,6 +21,8 @@ public class CierreDia extends PBase {
 
     private ListView listview;
     private ProgressBar pbar;
+    private TextView lbl1,lbl2;
+    private CheckBox cbox1;
 
     private wsOpenDT wso;
 
@@ -31,7 +35,7 @@ public class CierreDia extends PBase {
     private clsClasses.clsCierre item,ritem;
     private clsClasses.clsCierreRuta rfitem;
 
-    private boolean idle=false;
+    private boolean idle=false,pendientes=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,9 @@ public class CierreDia extends PBase {
             super.InitBase(savedInstanceState);
 
             listview = findViewById(R.id.listview1);
+            lbl1 = findViewById(R.id.textView14);
+            lbl2 = findViewById(R.id.textView15);
+            cbox1 = findViewById(R.id.checkBox);
             pbar = findViewById(R.id.progressBar3);
 
             app.getURL();
@@ -49,6 +56,7 @@ public class CierreDia extends PBase {
 
             buildList();
 
+            setHandlers();
         } catch (Exception e) {
             msgbox(new Object(){}.getClass().getEnclosingMethod().getName()+" . "+e.getMessage());
         }
@@ -58,6 +66,20 @@ public class CierreDia extends PBase {
 
     public void doExit(View view) {
         if (idle) finish(); else toast("Espere . . . . ");
+    }
+
+    private void setHandlers() {
+        try {
+            cbox1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    pendientes = !cbox1.isChecked();
+                    filterItems();
+                }
+            });
+        } catch (Exception e) {
+            msgbox(new Object(){}.getClass().getEnclosingMethod().getName()+" . "+e.getMessage());
+        }
     }
 
     //endregion
@@ -71,15 +93,17 @@ public class CierreDia extends PBase {
                     " P_RUTA.CODIGO_RUTA, P_RUTA.NOMBRE AS Expr1, P_RUTA.ACTIVO AS Expr2 " +
                     "FROM  P_EMPRESA INNER JOIN P_SUCURSAL ON P_EMPRESA.EMPRESA = P_SUCURSAL.EMPRESA INNER JOIN " +
                     "P_RUTA ON P_EMPRESA.EMPRESA = P_RUTA.EMPRESA AND P_SUCURSAL.CODIGO_SUCURSAL = P_RUTA.SUCURSAL " +
-                    "WHERE  (P_SUCURSAL.ACTIVO = 1) AND (P_RUTA.ACTIVO = 1) AND (P_SUCURSAL.SUCURSAL_DEMO = 0) AND " +
+                    "WHERE  (P_SUCURSAL.ACTIVO = 1) AND (P_RUTA.ACTIVO = 1)  AND " +
                     "(P_EMPRESA.EMPRESA >0) ";
+
 
             sql="SELECT P_EMPRESA.EMPRESA, P_EMPRESA.NOMBRE, P_SUCURSAL.CODIGO_SUCURSAL,P_SUCURSAL.DESCRIPCION, P_SUCURSAL.SUCURSAL_DEMO, P_SUCURSAL.ACTIVO, " +
                     " P_RUTA.CODIGO_RUTA, P_RUTA.NOMBRE AS Expr1, P_RUTA.ACTIVO AS Expr2 " +
                     "FROM  P_EMPRESA INNER JOIN P_SUCURSAL ON P_EMPRESA.EMPRESA = P_SUCURSAL.EMPRESA INNER JOIN " +
                     "P_RUTA ON P_EMPRESA.EMPRESA = P_RUTA.EMPRESA AND P_SUCURSAL.CODIGO_SUCURSAL = P_RUTA.SUCURSAL " +
-                    "WHERE  (P_SUCURSAL.ACTIVO = 1) AND (P_RUTA.ACTIVO = 1)  AND " +
+                    "WHERE  (P_SUCURSAL.ACTIVO = 1) AND (P_RUTA.ACTIVO = 1) AND (P_SUCURSAL.SUCURSAL_DEMO = 0) AND " +
                     "(P_EMPRESA.EMPRESA >0) ";
+
 
             wso.execute(sql,() -> processList());
         } catch (Exception e) {
@@ -148,18 +172,10 @@ public class CierreDia extends PBase {
     }
 
     private void processData() {
-        int pp=0;
-        boolean morning;
-        long ff,fl,fi;
+        int pp = 0;
 
         try {
-            ff=du.getActDateTime();
-            morning=du.gethour(ff)<12;
-            fl=du.ffecha00(ff)+1200;fi=fl;
 
-            if (morning) {
-                fi=du.addDays(ff,-1);fi=du.ffecha00(fi);
-            }
 
             rfitems.clear();
 
@@ -187,7 +203,30 @@ public class CierreDia extends PBase {
                 if (pp>-1) ritems.get(pp).fecha=itm.fecha;
             }
 
-            items.clear();
+            filterItems();
+        } catch (Exception e) {
+            msgbox(new Object(){}.getClass().getEnclosingMethod().getName()+" . "+pp+"   "+e.getMessage());
+        }
+
+        idle=true;pbar.setVisibility(View.INVISIBLE);
+    }
+
+    private void filterItems() {
+        boolean morning;
+        long ff, fl, fi;
+        int comp,pend;
+
+        try {
+            ff=du.getActDateTime();
+            morning=du.gethour(ff)<12;
+            fl=du.ffecha00(ff)+1200;fi=fl;
+
+            if (morning) {
+                fi=du.addDays(ff,-1);fi=du.ffecha00(fi);
+            }
+
+            items.clear();comp=0;pend=0;
+
             for (clsClasses.clsCierre itm : ritems) {
                 if (itm.fecha>0) {
                     item=itm;
@@ -198,7 +237,13 @@ public class CierreDia extends PBase {
                         if (item.fecha>=fl) item.bandera=1;
                     }
 
-                    items.add(item);
+                    if (item.bandera==1) comp++; else pend++;
+
+                    if (pendientes) {
+                        if (item.bandera==0)  items.add(item);
+                    } else {
+                        if (item.bandera==1)  items.add(item);
+                    }
                 }
             }
 
@@ -211,11 +256,12 @@ public class CierreDia extends PBase {
 
             adapter =new LA_Cierre(this,this, items);
             listview.setAdapter(adapter);
-        } catch (Exception e) {
-            msgbox(new Object(){}.getClass().getEnclosingMethod().getName()+" . "+pp+"   "+e.getMessage());
-        }
 
-        idle=true;pbar.setVisibility(View.INVISIBLE);
+            lbl1.setText("Pendiente: "+pend);
+            lbl2.setText("Completo: "+comp);
+        } catch (Exception e) {
+            msgbox(new Object(){}.getClass().getEnclosingMethod().getName()+"."+e.getMessage());
+        }
     }
 
     private int posrec(int rid) {

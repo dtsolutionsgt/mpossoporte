@@ -21,7 +21,6 @@ public class EmpresaLista extends PBase {
     private ProgressBar progressBar;
 
     private wsOpenDT wso;
-    private Runnable rnListaEmpresas;
 
     private ArrayList<clsClasses.clsList> items= new ArrayList<clsClasses.clsList>();
 
@@ -47,10 +46,9 @@ public class EmpresaLista extends PBase {
 
             app.getURL();
             wso=new wsOpenDT(gl.wsurl);
-            rnListaEmpresas = () -> listaEmpresas();
 
             sql="SELECT EMPRESA, NOMBRE FROM P_EMPRESA WHERE (ACTIVO=1) ORDER BY NOMBRE";
-            wso.execute(sql,rnListaEmpresas);
+            wso.execute(sql,this::listaEmpresas);
 
         } catch (Exception e) {
             msgbox(new Object(){}.getClass().getEnclosingMethod().getName()+" . "+e.getMessage());
