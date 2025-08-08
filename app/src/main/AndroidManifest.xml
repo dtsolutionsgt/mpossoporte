@@ -18,15 +18,7 @@
         android:theme="@style/Theme.BBp"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
-            android:name=".CierreDia"
-            android:exported="false" />
-        <activity
-            android:name=".EnvioDB"
-            android:exported="false" />
-        <activity
-            android:name=".VersionEmpresa"
-            android:exported="false" />
+
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -84,6 +76,22 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".Sucursales"
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".PreciosFB"
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".CierreDia"
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".EnvioDB"
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".VersionEmpresa"
             android:exported="false"
             android:windowSoftInputMode="stateAlwaysHidden" />
     </application>
