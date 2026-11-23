@@ -2,11 +2,33 @@ package com.dts.base;
 
 public class clsClasses {
 
+    public class clsFbOrdenEstado {
+        public String corel;
+        public int id;
+        public int estado;
+        public int idmesa;
+        public String nombre;
+        public Long fecha;
+        public int mesero;
+    }
+
     public class clsfbPrecio {
         public int codigo;
         public int nivel;
         public String um;
         public double precio;
+    }
+
+    public class clsfbResSesion {
+        public String id;
+        public int codigo_mesa;
+        public int vendedor;
+        public int estado;
+        public int cantp;
+        public int cantc;
+        public long fechaini;
+        public long fechafin;
+        public long fechault;
     }
 
     public class clsfbVersion {
@@ -78,6 +100,34 @@ public class clsClasses {
         public String texto;
         public long fecha;
     }
+
+    public class clsT_orden {
+        public int id;
+        public String corel;
+        public String producto;
+        public String empresa;
+        public String um;
+        public double cant;
+        public String umstock;
+        public double factor;
+        public double precio;
+        public double imp;
+        public double des;
+        public double desmon;
+        public double total;
+        public double preciodoc;
+        public double peso;
+        public double val1;
+        public String val2;
+        public double val3;
+        public String val4;
+        public double percep;
+        public int cuenta;
+        public int estado;
+        public int idmesero;
+    }
+
+
 
     //endregion
 

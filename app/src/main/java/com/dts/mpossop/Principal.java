@@ -107,6 +107,12 @@ public class Principal extends PBase {
                         case 9:
                             gl.menuid=9;
                             startActivity(new Intent(Principal.this,PreciosFB.class));break;
+                        case 10:
+                            gl.menuid=10;
+                            startActivity(new Intent(Principal.this,Ordenes.class));break;
+                        case 11:
+                            gl.menuid=11;
+                            startActivity(new Intent(Principal.this,ResSession.class));break;
                     }
 
                     callback=gl.menuid+1;
@@ -139,6 +145,8 @@ public class Principal extends PBase {
             if (modo==1) addMenuCat(7,"Envio BD");
             addMenuCat(8,"Cierre de caja");
             if (modo==1) addMenuCat(9,"Precios Firebase");
+            addMenuCat(10,"Ordenes");
+            addMenuCat(11,"ResSession");
 
             adapter =new LA_Menu(this,this,cats);
             menuview.setAdapter(adapter);

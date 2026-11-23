@@ -95,7 +95,7 @@ public class PreciosFB extends PBase {
         try {
             idle=false;progressBar.setVisibility(View.VISIBLE);
 
-            sql="SELECT CODIGO_PRODUCTO, NIVEL, UNIDADMEDIDA, PRECIO " +
+            sql="SELECT CODIGO_PRODUCTO, NIVEL, UNIDADMEDIDA, PRECIO, CODIGO_PRECIO " +
                 "FROM P_PRODPRECIO  WHERE (EMPRESA = "+gl.empid+")";
             wso.execute(sql, this::aplicaPrecios);
         } catch (Exception e) {
@@ -126,7 +126,7 @@ public class PreciosFB extends PBase {
                     item.um=dt.getString(2);
                     item.precio=dt.getDouble(3);
 
-                    fbp.setItem(item);
+                    fbp.setItem(item,dt.getInt(4));
 
                     dt.moveToNext();
                 }

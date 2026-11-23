@@ -21,8 +21,8 @@ public class fbPrecio extends fbBase {
         empresa=idempresa;
     }
 
-    public void setItem(clsClasses.clsfbPrecio item) {
-        fdt=fdb.getReference(root+"/"+empresa+"/"+item.codigo);
+    public void setItem(clsClasses.clsfbPrecio item,int codigo_precio) {
+        fdt=fdb.getReference(root+"/"+empresa+"/"+item.codigo+"/"+codigo_precio);
         fdt.setValue(item);
     }
 

@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace 'com.dts.mpossop'
-    compileSdk 34
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.dts.mpossop"
@@ -30,6 +30,7 @@ android {
 
 dependencies {
 
+    implementation 'androidx.activity:activity-ktx:1.13.0'
     implementation files('libs/ksoap2-android-assembly-3.0.0-jar-with-dependencies.jar')
 
     implementation 'androidx.appcompat:appcompat:1.6.1'

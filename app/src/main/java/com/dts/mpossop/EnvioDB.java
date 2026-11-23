@@ -149,7 +149,7 @@ public class EnvioDB extends PBase {
         try {
             super.onResume();
 
-            gl.dialogr = () -> {dialogswitch();};
+            gl.dialogr = () -> dialogswitch();
 
 
         } catch (Exception e) {

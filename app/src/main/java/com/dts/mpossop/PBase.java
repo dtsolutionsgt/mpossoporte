@@ -124,6 +124,18 @@ public class PBase extends Activity {
 
     //region Messages
 
+    protected void toastui(String msg) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    toast(msg);
+                } catch (Exception e) {
+                }
+            }
+        });
+    }
+
     public void toast(String msg) {
 
         if (mu.emptystr(msg)) return;
@@ -149,6 +161,18 @@ public class PBase extends Activity {
     public void msgask(int dialogid,String msg){
         gl.dialogid=dialogid;
         mu.msgask(dialogid,msg);
+    }
+
+    protected void msgboxui(String msg) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    msgbox(msg);
+                } catch (Exception e) {
+                }
+            }
+        });
     }
 
     public void msgbox(String msg){
